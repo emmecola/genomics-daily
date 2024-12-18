@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import re
 import requests
+import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from urllib.parse import urlencode
@@ -323,7 +324,9 @@ def generate_editorial_with_claude(papers_df):
         return None
 
 def main():
-    df = retrieve_genomics_papers_with_abstracts()
+    keywords_file = sys.argv[1]
+    journals_file = sys.argv[2]
+    df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file)
     editorial = generate_editorial_with_claude(df)
     print(editorial)
 

@@ -28,7 +28,7 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
 
 5. Have fun!
 
-    ```python genomics-daily.py```
+    ```python genomics-daily.py keywords.txt journals.txt```
 
 ## Customization
 
