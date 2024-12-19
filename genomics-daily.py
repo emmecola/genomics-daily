@@ -295,6 +295,7 @@ def generate_editorial_with_claude(papers_df):
     - If possible, try to cover different areas (for example medicine, plant science, microbiology etc)
     - Write a catchy title that synthetises the three papers, and a brief introductory paragraph.
     - For each paper, write one paragraph describing the major findings and why it is relevant for science, medicine or society. This paragraph should not contain lists.
+    - Add one relevant emoji next to each subheading
     - Be engaging but serious, avoid sensationalism.
     - Do not sign this text.
     - At the end of the text, add the references with links to the papers that you chose.
