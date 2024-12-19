@@ -291,10 +291,10 @@ def generate_editorial_with_claude(papers_df):
     {paper_summaries}
     
     You must follow these instructions:
-    - Sort the papers by relevance, giving priority to the topics that you deem more important.
     - Ignore publications that are not related to genomics, genetics or DNA analysis.
-    - If possible, try to cover different areas (for example, human research, medicine, plant science, microbiology, evolution, etc).
-    - Write a catchy title that synthetises the three most important papers, and a brief introductory paragraph.
+    - Select the three most relevant papers, giving priority to the topics that you deem more important.
+    - If possible, the papers you choose should cover different research areas.
+    - Write a catchy title that synthetises the three papers that you selected, and a brief introductory paragraph.
     - For each selected paper, write one paragraph describing the major findings and why it is relevant. This paragraph should not contain lists.
     - Each subheading must start with a relevant emoji.
     - Be engaging but serious, avoid sensationalism.
