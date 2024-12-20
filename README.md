@@ -34,6 +34,7 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
     - Install the libraries specified in `requirements_bot.txt`
     - Set up your BSKY_USER, BSKY_PASSWORD, MASTODON_TOKEN and MASTODON_INSTANCE environment variables
     - Run the script
+    
        ```python genomics-daily-bot.py summary.md``` 
 
 ## Customization
