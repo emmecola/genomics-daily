@@ -83,7 +83,7 @@ def post_bluesky(tweet):
     client.send_post(text=tweet)
 
 def post_mastodon(tweet):
-    MASTODON_TOKEN=os.env('MASTODON_TOKEN')
+    MASTODON_TOKEN=os.getenv('MASTODON_TOKEN')
     MASTODON_INSTANCE=os.getenv('MASTODON_INSTANCE')
     client = Mastodon(access_token=MASTODON_TOKEN,api_base_url=MASTODON_INSTANCE)
     client.status_post(tweet)
