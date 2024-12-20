@@ -78,8 +78,6 @@ def prepare_tweet(tweet, url = '' ):
 def post_bluesky(tweet):
     BSKY_USER = os.getenv('BSKY_USER')
     BSKY_PASSWORD = os.getenv('BSKY_PASSWORD')
-    print(BSKY_USER)
-    print(BSKY_PASSWORD)
     client = BlueskyClient()
     client.login(BSKY_USER, BSKY_PASSWORD)
     client.send_post(text=tweet)
