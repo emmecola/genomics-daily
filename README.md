@@ -30,6 +30,12 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
 
     ```python genomics-daily.py keywords.txt journals.txt```
 
+6. Optionally, you can also post a short tweet about the generated summary. To do this:
+    - Install the libraries specified in `requirements_bot.txt`
+    - Set up your BSKY_USER, BSKY_PASSWORD, MASTODON_TOKEN and MASTODON_INSTANCE environment variables
+    - Run the script
+       ```python genomics-daily-bot.py summary.md``` 
+
 ## Customization
 
 You can easily adjust the search parameters according to your needs:
@@ -38,5 +44,5 @@ You can easily adjust the search parameters according to your needs:
 
 ## Disclaimer
 
-This tool is for research purposes and relies on the Anthropic API for paper summaries.
+This tool is for research purposes and relies on the Anthropic API for paper summaries and tweet generation.
 
