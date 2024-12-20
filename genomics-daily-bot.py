@@ -75,25 +75,50 @@ def prepare_tweet(tweet, url = '' ):
             final_tweet = 'Check out the latest genomics news! 🧬 ' + url    
     return final_tweet
 
+def create_facets(text, url = ''):
+    facets = []
+    # Handle URL
+    if url in text:
+        start = len(text[:text.find(url)].encode('utf-8'))
+        end = start + len(url.encode('utf-8'))
+        facets.append({
+            'index': {
+                'byteStart': start,
+                'byteEnd': end
+            },
+            'features': [{
+                '$type': 'app.bsky.richtext.facet#link',
+                'uri': url
+            }]
+        })
+    # Handle hashtags
+    words = text.split()
+    current_position = 0
+    for word in words:
+        if word.startswith('#'):
+            start = len(text[:text.find(word, current_position)].encode('utf-8'))
+            end = start + len(word.encode('utf-8'))
+            facets.append({
+                'index': {
+                    'byteStart': start,
+                    'byteEnd': end
+                },
+                'features': [{
+                    '$type': 'app.bsky.richtext.facet#tag',
+                    'tag': word[1:]
+                }]
+            })
+        current_position = text.find(word, current_position) + len(word)
+    
+    return facets
+
 def post_bluesky(tweet, url = ''):
     BSKY_USER = os.getenv('BSKY_USER')
     BSKY_PASSWORD = os.getenv('BSKY_PASSWORD')
     client = BlueskyClient()
     client.login(BSKY_USER, BSKY_PASSWORD)
-    start = len(tweet[:tweet.find(url)].encode('utf-8'))
-    end = start + len(url.encode('utf-8'))
-
-    facet = {
-        'index': {
-            'byteStart': start,
-            'byteEnd': end
-        },
-        'features': [{
-            '$type': 'app.bsky.richtext.facet#link',
-            'uri': url
-        }]
-    }
-    client.send_post(text=tweet,facets=[facet])
+    facets = create_facets(tweet, url = url)
+    client.send_post(text=tweet,facets=facets)
 
 def post_mastodon(tweet):
     MASTODON_TOKEN=os.getenv('MASTODON_TOKEN')
