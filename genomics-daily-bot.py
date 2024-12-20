@@ -75,12 +75,24 @@ def prepare_tweet(tweet, url = '' ):
             final_tweet = 'Check out the latest genomics news! 🧬 ' + url    
     return final_tweet
 
-def post_bluesky(tweet):
+def post_bluesky(tweet, url = ''):
     BSKY_USER = os.getenv('BSKY_USER')
     BSKY_PASSWORD = os.getenv('BSKY_PASSWORD')
     client = BlueskyClient()
     client.login(BSKY_USER, BSKY_PASSWORD)
-    client.send_post(text=tweet)
+    start = tweet.find(url)
+    end = start + len(url)
+    facet = {
+        'index': {
+            'byteStart': start,
+            'byteEnd': end
+        },
+        'features': [{
+            '$type': 'app.bsky.richtext.facet#link',
+            'uri': url
+        }]
+    }
+    client.send_post(text=tweet,facets=[facet])
 
 def post_mastodon(tweet):
     MASTODON_TOKEN=os.getenv('MASTODON_TOKEN')
@@ -89,12 +101,13 @@ def post_mastodon(tweet):
     client.status_post(tweet)
 
 def main():
+    myURL = 'https://emmecola.github.io/genomics-daily'
     text_file = sys.argv[1]
     text = load_text(text_file)
     tweet = generate_tweet(text)
-    final_tweet = prepare_tweet(tweet,url='https://tinyurl.com/dna-daily')
+    final_tweet = prepare_tweet(tweet,url=myURL)
     print(final_tweet)
-    post_bluesky(final_tweet)
+    post_bluesky(final_tweet,url=myURL)
     post_mastodon(final_tweet)
 
 if __name__ == "__main__":
