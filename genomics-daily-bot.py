@@ -80,8 +80,9 @@ def post_bluesky(tweet, url = ''):
     BSKY_PASSWORD = os.getenv('BSKY_PASSWORD')
     client = BlueskyClient()
     client.login(BSKY_USER, BSKY_PASSWORD)
-    start = tweet.find(url)
-    end = start + len(url)
+    start = len(tweet[:tweet.find(url)].encode('utf-8'))
+    end = start + len(url.encode('utf-8'))
+
     facet = {
         'index': {
             'byteStart': start,
