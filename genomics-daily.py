@@ -135,7 +135,7 @@ def retrieve_genomics_papers_with_abstracts(days_back=1,
 
     # Calculate the date range
     end_date = datetime.now() - timedelta(days=days_back)
-    start_date = daytime.now() - timedelta(days=days_back)
+    start_date = datetime.now() - timedelta(days=days_back)
     
     # Format dates for PubMed search
     start_date_str = start_date.strftime("%Y/%m/%d")
