@@ -1,4 +1,4 @@
-EE#!/usr/bin/env python3
+#!/usr/bin/env python3
 import anthropic
 import html
 import os
