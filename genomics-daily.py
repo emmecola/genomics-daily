@@ -328,7 +328,8 @@ def generate_editorial_with_claude(papers_df):
 def main():
     keywords_file = sys.argv[1]
     journals_file = sys.argv[2]
-    df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file)
+    days_back = sys.argv[3] if len(sys.argv) > 3 else 1
+    df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file, days_back=days_back)
     editorial = generate_editorial_with_claude(df)
     print(editorial)
 
