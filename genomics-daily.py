@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+EE#!/usr/bin/env python3
 import anthropic
 import html
 import os
@@ -134,7 +134,7 @@ def retrieve_genomics_papers_with_abstracts(days_back=1,
     major_journals = load_journals_from_file(journals_file)
 
     # Calculate the date range
-    end_date = daytime.now() - timedelta(days=days_back)
+    end_date = datetime.now() - timedelta(days=days_back)
     start_date = daytime.now() - timedelta(days=days_back)
     
     # Format dates for PubMed search
