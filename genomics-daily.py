@@ -284,9 +284,9 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     ])
     
     # Construct the prompt for the editorial
-if mode=='advanced':
-    mymodel = 'claude-3-5-sonnet-latest'
-    prompt = f"""
+    if mode=='advanced':
+        mymodel = 'claude-3-5-sonnet-latest'
+        prompt = f"""
     You are a senior scientific editor specializing in genomics research.
     Write a long, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
     
@@ -309,9 +309,9 @@ if mode=='advanced':
     - At the end of the text, add the references with links to the papers that you chose.
     - Use the **Markdown** syntax.
     """
-else:
-    mymodel = 'claude-3-5-haiku-latest'
-    prompt = f"""
+    else:
+        mymodel = 'claude-3-5-haiku-latest'
+        prompt = f"""
     You are a senior scientific editor specializing in genomics research.
     Write a short, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
     
@@ -334,7 +334,6 @@ else:
     try:
         response = client.messages.create(
             model=mymodel,
-            
             max_tokens=1200,
             messages=[
                 {
