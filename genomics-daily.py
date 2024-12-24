@@ -249,7 +249,7 @@ def retrieve_genomics_papers_with_abstracts(days_back=1,
     
     return df
 
-def generate_editorial_with_claude(papers_df):
+def generate_editorial_with_claude(papers_df, mode='simple'):
     """
     Generate an editorial using Anthropic's Claude API based on retrieved papers
     
@@ -284,6 +284,33 @@ def generate_editorial_with_claude(papers_df):
     ])
     
     # Construct the prompt for the editorial
+if mode=='advanced':
+    mymodel = 'claude-3-5-sonnet-latest'
+    prompt = f"""
+    You are a senior scientific editor specializing in genomics research.
+    Write a long, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
+    
+    {paper_summaries}
+    
+    You must follow these instructions:
+    - Ignore publications that are not related to genomics, genetics or DNA analysis.
+    - Select the most relevant papers (5 to 10 papers maximum), giving priority to the topics that you deem more important.
+    - If possible, the papers you choose should cover different research areas (including, for example, medicine, evolution, plant science or microbiology).
+    - Write a catchy title.
+    - You should try to find connections between different papers, highlighting shared themes.
+    - You should provide some historical background to each discovery.
+    - You should try to imagine and elaborate on the future impact of this research on science and society.
+    - The main text should not contain lists.
+    - Don't use emojis.
+    - Be serious, avoid sensationalism.
+    - Provide context based on what you already know on the subjects.
+    - Use analogies and metaphors to explain difficult concepts.
+    - Do not sign this text.
+    - At the end of the text, add the references with links to the papers that you chose.
+    - Use the **Markdown** syntax.
+    """
+else:
+    mymodel = 'claude-3-5-haiku-latest'
     prompt = f"""
     You are a senior scientific editor specializing in genomics research.
     Write a short, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
@@ -306,7 +333,7 @@ def generate_editorial_with_claude(papers_df):
     # Call Anthropic's Claude API
     try:
         response = client.messages.create(
-            model="claude-3-5-haiku-latest",
+            model=mymodel,
             
             max_tokens=1200,
             messages=[
@@ -329,8 +356,9 @@ def main():
     keywords_file = sys.argv[1]
     journals_file = sys.argv[2]
     days_back = int(sys.argv[3]) if len(sys.argv) > 3 else 1
+    mode = sys.argv[4] if len(sys.argv) > 4 else 'simple'
     df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file, days_back=days_back)
-    editorial = generate_editorial_with_claude(df)
+    editorial = generate_editorial_with_claude(df,mode=mode)
     print(editorial)
 
 if __name__ == "__main__":
