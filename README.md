@@ -42,6 +42,7 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
 You can easily adjust the search parameters according to your needs:
 - Edit `keywords.txt` to update search terms
 - Edit `journals.txt` to change the list of targeted journals
+- When running `genomics-daily.py`, set the third parameter with the number of days back for the literature search (default is one day back)
 
 ## Disclaimer
 
