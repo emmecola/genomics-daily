@@ -287,7 +287,7 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     if mode=='advanced':
         tokens = 4000
         temp = 0.3
-        mymodel = 'claude-3-5-sonnet-latest'
+        mymodel = 'claude-3-5-haiku-latest'
         prompt = f"""
 You are a senior scientific editor specializing in genomics research.
     Write an insightful and cohesive essay analyzing the latest trends in genomics research based on the following recent publications.
