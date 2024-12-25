@@ -285,31 +285,39 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
+        tokens = 4000
+        temp = 0.3
         mymodel = 'claude-3-opus-latest'
         prompt = f"""
-    You are a senior scientific editor specializing in genomics research.
-    Write a long, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
-    
-    {paper_summaries}
-    
-    You must follow these instructions:
-    - Ignore publications that are not related to genomics, genetics or DNA analysis.
-    - Select the most relevant papers (5 to 10 papers maximum), giving priority to the topics that you deem more important.
-    - If possible, the papers you choose should cover different research areas (including, for example, medicine, evolution, plant science or microbiology).
-    - Write a catchy title.
-    - You should try to find connections between different papers, highlighting shared themes.
-    - You should provide some historical background to each discovery.
-    - You should try to imagine and elaborate on the future impact of this research on science and society.
-    - The main text should not contain lists.
-    - Don't use emojis.
-    - Be serious, avoid sensationalism.
-    - Provide context based on what you already know on the subjects.
-    - Use analogies and metaphors to explain difficult concepts.
-    - Do not sign this text.
-    - At the end of the text, add the references with links to the papers that you chose.
-    - Use the **Markdown** syntax.
+You are a senior scientific editor specializing in genomics research.
+    Write an insightful and cohesive essay analyzing the latest trends in genomics research based on the following recent publications.
+
+{paper_summaries}
+
+You have to group papers according to common themes, and select the most important themes or the ones covered by more papers. 
+
+For each identified theme, please provide:
+1. An introduction of the theme
+2. Historical context and background
+3. Accessible metaphors to explain complex concepts
+4. Integration of findings from the provided abstracts
+5. Future research directions and implications
+
+Also follow these instructions:
+- Ignore publications that are not related to genomics, genetics or DNA analysis.
+- Make connections between papers, allowing smooth transitions between different cited papers.
+- Ensure technical concepts are explained clearly.
+- Cite the papers that you took into account, and include a complete reference list at the end. No other lists should be present.
+- Use subheadings only to distinguish themes.
+- Write a catchy title.
+- Don't use emojis.
+- Be professional and serious, avoid sensationalism.
+- Do not sign this text.
+- Use the **Markdown** syntax.
     """
     else:
+        tokens = 1200
+        temp = 0.7
         mymodel = 'claude-3-5-haiku-latest'
         prompt = f"""
     You are a senior scientific editor specializing in genomics research.
@@ -334,14 +342,14 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     try:
         response = client.messages.create(
             model=mymodel,
-            max_tokens=1200,
+            max_tokens=tokens,
             messages=[
                 {
                     "role": "user",
                     "content": prompt
                 }
             ],
-            temperature=0.7
+            temperature=temp
         )
         
         # Extract and return the editorial text
