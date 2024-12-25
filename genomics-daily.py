@@ -296,7 +296,7 @@ You are a senior scientific editor specializing in genomics research.
 
 You have to group papers according to common themes, and select the most important themes or the ones covered by more papers. 
 
-For each identified theme, please provide:
+For each identified theme, please provide without subheadings:
 1. An introduction of the theme
 2. Historical context and background
 3. Accessible metaphors to explain complex concepts
@@ -308,9 +308,10 @@ Also follow these instructions:
 - Make connections between papers, allowing smooth transitions between different cited papers.
 - Ensure technical concepts are explained clearly.
 - Cite the papers that you took into account, and include a complete reference list at the end. No other lists should be present.
-- Use subheadings only to distinguish themes.
+- Use one subheading for each theme, providing only the title without expressions such as "Theme 1"
 - Write a catchy title.
 - Don't use emojis.
+- Never refer collectively to these papers as "this collection" or "this set"
 - Be professional and serious, avoid sensationalism.
 - Do not sign this text.
 - Use the **Markdown** syntax.
