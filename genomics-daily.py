@@ -285,7 +285,7 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
-        tokens = 4000
+        tokens = 8000
         temp = 0.3
         mymodel = 'claude-3-5-haiku-latest'
         prompt = f"""
@@ -307,6 +307,8 @@ Also follow these instructions:
 - Ignore publications that are not related to genomics, genetics or DNA analysis.
 - Make connections between papers, allowing smooth transitions between different cited papers.
 - Ensure technical concepts are explained clearly.
+- The transitions between paragraphs must be very smooth.
+- Don't be repetitive in your expressions.
 - Cite the papers that you took into account, and include a complete reference list at the end. No other lists should be present.
 - Use one subheading for each theme, providing only the title without expressions such as "Theme 1"
 - Write a catchy title.
