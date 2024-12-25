@@ -285,7 +285,7 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
-        tokens = 8000
+        tokens = 4000
         temp = 0.3
         mymodel = 'claude-3-opus-latest'
         prompt = f"""
