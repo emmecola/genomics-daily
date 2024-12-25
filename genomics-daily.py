@@ -285,7 +285,7 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
-        mymodel = 'claude-3-5-sonnet-latest'
+        mymodel = 'claude-3-opus-latest'
         prompt = f"""
     You are a senior scientific editor specializing in genomics research.
     Write a long, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
