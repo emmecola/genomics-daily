@@ -368,8 +368,9 @@ def main():
     days_back = int(sys.argv[3]) if len(sys.argv) > 3 else 1
     mode = sys.argv[4] if len(sys.argv) > 4 else 'simple'
     df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file, days_back=days_back)
-    editorial = generate_editorial_with_claude(df,mode=mode)
-    print(editorial)
+    df.to_csv("test_df.csv")
+    #editorial = generate_editorial_with_claude(df,mode=mode)
+    #print(editorial)
 
 if __name__ == "__main__":
     main()
