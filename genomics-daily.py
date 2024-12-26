@@ -285,16 +285,16 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
-        tokens = 4000
+        tokens = 8000
         temp = 0.3
         mymodel = 'claude-3-5-haiku-latest'
         prompt = f"""
 You are a senior scientific editor specializing in genomics research.
-    Write an insightful and cohesive essay analyzing the latest trends in genomics research based on the following recent publications.
+    Write an insightful and cohesive essay of about 800 words, analyzing the latest trends in genomics research based on the following recent publications.
 
 {paper_summaries}
 
-You have to group papers according to common themes, and select the most important themes or the ones covered by more papers. 
+You have to group papers according to common themes, and select the most important themes or the ones covered by more papers. Ensure that at least 3 different themes are selected.
 
 For each identified theme, please provide without subheadings:
 1. An introduction of the theme
