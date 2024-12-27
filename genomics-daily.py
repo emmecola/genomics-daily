@@ -308,8 +308,8 @@ Also follow these instructions:
 - Make meaningful connections between papers, allowing smooth transitions between different cited papers.
 - Ensure technical details are explained clearly in simple terms.
 - The transitions between paragraphs must be very smooth. From start to end it must look like one long discourse.
-- Don't be repetitive or boring in your expressions. Always look clever in your sentences.
-- Cite in-text the papers that you refer to, mentioning at least the first author name. Use reference numbers and include a complete reference list at the end. The references must have links.
+- Don't be repetitive or boring in your expressions, be ironic and witty. Always look clever and brilliant in your sentences.
+- Cite in-text the papers that you refer to, mentioning at least the first author name. Use reference numbers and include a complete reference list at the end, with links to the papers.
 - Use one subheading for each theme, providing only the title without expressions such as "Theme 1"
 - Write a catchy and witty title.
 - Don't use emojis.
