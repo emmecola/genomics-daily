@@ -285,36 +285,36 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     
     # Construct the prompt for the editorial
     if mode=='advanced':
-        tokens = 4000
-        temp = 0.3
-        mymodel = 'claude-3-opus-latest'
+        tokens = 8000
+        temp = 0.7
+        mymodel = 'claude-3-5-haiku-latest'
         prompt = f"""
 You are a senior scientific editor specializing in genomics research.
-    Write an insightful and cohesive essay of about 800 words, analyzing the latest trends in genomics research based on the following recent publications.
+    Write a cohesive essay of about 800 words, analyzing the latest trends in genomics research based on the following recent publications.
 
 {paper_summaries}
 
-You have to group papers according to common themes, and select the most important themes or the ones covered by more papers. Ensure that at least 3 different themes are selected.
+You have to group papers according to common themes, and select the themes that are covered by more papers. Ensure that at least 3 different themes are selected.
 
 For each identified theme, please provide without subheadings:
 1. An introduction of the theme
 2. Historical context and background
 3. Accessible metaphors to explain complex concepts
 4. Integration of findings from the provided abstracts
-5. Future research directions and implications
+5. Future research directions and implications for societuly
 
 Also follow these instructions:
 - Ignore publications that are not related to genomics, genetics or DNA analysis.
-- Make connections between papers, allowing smooth transitions between different cited papers.
-- Ensure technical concepts are explained clearly.
-- The transitions between paragraphs must be very smooth.
-- Don't be repetitive in your expressions.
-- Cite the papers that you took into account, and include a complete reference list at the end. No other lists should be present.
-- Use one subheading for each theme, providing only the title without expressions such as "Theme 1"
-- Write a catchy title.
+- Make meaningful connections between papers, allowing smooth transitions between different cited papers.
+- Ensure technical details are explained clearly in simple terms.
+- The transitions between paragraphs must be very smooth. From start to end it must look like one long discourse.
+- Don't be repetitive or boring in your expressions.
+- Cite in-text the papers that you refer to, mentioning at least the first author name. Include a complete reference list at the end. No other lists should be present.
+- Use one witty subheading for each theme, providing only the title without expressions such as "Theme 1"
+- Write a catchy and witty title.
 - Don't use emojis.
 - Never refer collectively to these papers as "this collection" or "this set"
-- Be professional and serious, avoid sensationalism.
+- Be engaging and witty, avoid sensationalism.
 - Do not sign this text.
 - Use the **Markdown** syntax.
     """
