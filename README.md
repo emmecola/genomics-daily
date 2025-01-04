@@ -31,10 +31,10 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
     ```python genomics-daily.py keywords.txt journals.txt [--days-back DAYS] [--mode {simple|advanced}]```
 
     Optional arguments:
-        - `days-back`: Number of days to look back for papers (default: 1). Example: `--days-back 7` will search for papers published in the last week.
-        - `mode`: Processing mode (default: `simple`)
-            - `simple`: briefly summarize 3 relevant papers
-            - `advanced`: generate a longer text including several papers, and highlighting their connections
+    - `days-back`: Number of days to look back for papers (default: 1). Example: `--days-back 7` will search for papers published in the last week.
+    - `mode`: Processing mode (default: `simple`)
+        - `simple`: briefly summarize 3 relevant papers
+        - `advanced`: generate a longer text including several papers, and highlighting their connections
 
 6. Optionally, you can also post a short tweet about the generated summary. To do this:
     - Install the libraries specified in `requirements_bot.txt`
