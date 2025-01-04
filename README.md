@@ -5,7 +5,7 @@
 Genomics Daily is an automated tool that retrieves and summarizes the latest genomics publications from major scientific journals. The script:
 - Searches for publications based on predefined keywords listed in `keywords.txt`
 - Filters publications from a curated list of journals listed in `journals.txt`
-- Retrieves papers published within the last day
+- Retrieves papers published within the last *n* days, where *n* is set to 1 by defaut
 - Utilizes [Claude AI](https://claude.ai) by Anthropic to generate summaries of the most relevant papers
 
 ## Instructions
@@ -26,9 +26,15 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
 
     ```export ANTHROPIC_API_KEY='your_api_key_here'```
 
-5. Have fun!
+5. Run the script.
 
-    ```python genomics-daily.py keywords.txt journals.txt```
+    ```python genomics-daily.py keywords.txt journals.txt [--days-back DAYS] [--mode {simple|advanced}]```
+
+    Optional arguments:
+        - `days-back`: Number of days to look back for papers (default: 1). Example: `--days-back 7` will search for papers published in the last week.
+        - `mode`: Processing mode (default: `simple`)
+            - `simple`: briefly summarize 3 relevant papers
+            - `advanced`: generate a longer text including several papers, and highlighting their connections
 
 6. Optionally, you can also post a short tweet about the generated summary. To do this:
     - Install the libraries specified in `requirements_bot.txt`
@@ -42,7 +48,8 @@ Genomics Daily is an automated tool that retrieves and summarizes the latest gen
 You can easily adjust the search parameters according to your needs:
 - Edit `keywords.txt` to update search terms
 - Edit `journals.txt` to change the list of targeted journals
-- When running `genomics-daily.py`, set the third parameter with the number of days back for the literature search (default is one day back)
+- Consider a custom time interval (set `days-back` argument to a specific number of days)
+- Generate an in-depth longer text (set `mode` to `advanced`) 
 
 ## Disclaimer
 

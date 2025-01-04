@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import anthropic
+import argparse
 import html
 import os
 import pandas as pd
@@ -263,6 +264,11 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     str
         Generated editorial text
     """
+
+    # Default message if the paper dataframe is empty
+    if (len(papers_df)==0):
+        return "No genomics papers today!"
+
     # Ensure Anthropic API key is set
     client = anthropic.Anthropic(
         api_key=os.getenv('ANTHROPIC_API_KEY')
@@ -363,12 +369,16 @@ Also follow these instructions:
         return None
 
 def main():
-    keywords_file = sys.argv[1]
-    journals_file = sys.argv[2]
-    days_back = int(sys.argv[3]) if len(sys.argv) > 3 else 1
-    mode = sys.argv[4] if len(sys.argv) > 4 else 'simple'
-    df = retrieve_genomics_papers_with_abstracts(keywords_file=keywords_file, journals_file=journals_file, days_back=days_back)
-    editorial = generate_editorial_with_claude(df,mode=mode)
+    parser = argparse.ArgumentParser(description='Genomics Daily run')
+    parser.add_argument('keywords_file', help='File containing keywords to search')
+    parser.add_argument('journals_file', help='File containing journals to search')
+    parser.add_argument('--days-back', type=int, default=1, 
+                       help='Time interval in days (default: 1)')
+    parser.add_argument('--mode', choices=['simple', 'advanced'], default='simple',
+                       help='Processing mode (default: simple)')
+    args = parser.parse_args()
+    df = retrieve_genomics_papers_with_abstracts(keywords_file=args.keywords_file, journals_file=args.journals_file, days_back=args.days_back)
+    editorial = generate_editorial_with_claude(df,mode=args.mode)
     print(editorial)
 
 if __name__ == "__main__":
