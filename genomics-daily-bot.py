@@ -47,7 +47,7 @@ def generate_tweet(text):
     # Call Anthropic's Claude API
     try:
         response = client.messages.create(
-            model="claude-3-5-haiku-latest",
+            model="claude-3-5-haiku-20241022",
             
             max_tokens=300,
             messages=[
