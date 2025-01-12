@@ -293,7 +293,7 @@ def generate_editorial_with_claude(papers_df, mode='simple'):
     if mode=='advanced':
         tokens = 8000
         temp = 0.7
-        mymodel = 'claude-3-5-haiku-latest'
+        mymodel = 'claude-3-5-haiku-20241022'
         prompt = f"""
 You are a senior scientific editor specializing in genomics research.
     Write a cohesive essay of about 800 words, analyzing the latest trends in genomics research based on the following recent publications.
@@ -327,7 +327,7 @@ Also follow these instructions:
     else:
         tokens = 1200
         temp = 0.7
-        mymodel = 'claude-3-5-haiku-latest'
+        mymodel = 'claude-3-5-haiku-20241022'
         prompt = f"""
     You are a senior scientific editor specializing in genomics research.
     Write a short, insightful editorial analyzing the latest trends in genomics research based on the following recent publications:
